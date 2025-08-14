@@ -20,11 +20,11 @@ const DetailPage = () => {
 
   const [coin, setCoin] = useState<CoinProps>();
   const [loading, setLoading] = useState(true);
-
+  const apiKey = import.meta.env.VITE_API_KEY
   useEffect(() => {
     async function getCoin() {
       try {
-        fetch(`https://api.coincap.io/v2/assets/${cripto}`)
+        fetch(`https://rest.coincap.io/v3/assets/${cripto}?apiKey=${apiKey}`)
           .then((response) => response.json())
           .then((data: DataProps) => {
             if ("error" in data) {

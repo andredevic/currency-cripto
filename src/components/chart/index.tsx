@@ -48,10 +48,11 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ criptoId }) => {
 
   useEffect(() => {
     async function fetchChartData() {
+       const apiKey = import.meta.env.VITE_API_KEY
       try {
         const response = await axios.get(
-          `https://api.coincap.io/v2/assets/${criptoId}/history?interval=d1`
-        );
+          `https://rest.coincap.io/v3/assets/${criptoId}/history?interval=d1&apiKey=${apiKey}`
+        ); 
 
         const history: PriceHistory[] = response.data.data;
 
